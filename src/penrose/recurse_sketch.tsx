@@ -50,9 +50,6 @@ export class Penrose extends React.Component{
   }
 
   windowResized = (p5: p5Types) => {
-    this.startFrame = p5.frameCount;
-
-    this.config = this.decideColors(p5);
     p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
   }
 
@@ -60,7 +57,7 @@ export class Penrose extends React.Component{
     //clear()
     //background('black');
     p5.strokeWeight(1/(2*this.DEPTH))
-    this.curTime = (p5.frameCount - this.startFrame) / this.FRAME_RATE;
+    this.curTime = p5.frameCount / this.FRAME_RATE;
     const shapes = this.shapesAtDepth(this.depthToShapes,this.DEPTH)
     const length = shapes.length;
     for (let i = 0; i < length; i++) {

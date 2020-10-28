@@ -1,6 +1,6 @@
 // http://archive.bridgesmathart.org/2017/bridges2017-213.pdf
 import p5Types, { Vector, Color } from "p5";
-import {vectorBetween} from "./vector_util"
+import {vectorBetween, parseLerpVector} from "./vector_util"
 
 export enum ShapeSide {
   LEFT,
@@ -18,7 +18,7 @@ function opposite(side: ShapeSide) {
 export class Kite{
   tip: Vector;
   tail: Vector;
-  center: Vector;
+  center: Vector = new Vector();
   private p5: p5Types;
   private vector: Vector;
   private pointFromLeftSide: Vector;
@@ -30,13 +30,14 @@ export class Kite{
     this.colors = colors;
     this.tail = Vector.add(point,vector);
     this.vector = vector;
-    this.center = new Vector();
-    Vector.lerp(this.tail, this.tip, ratio, this.center);
+    let target: Vector = new Vector();
+    Vector.lerp(this.tail, this.tip, ratio, target);
+    this.center = parseLerpVector( p5, target.x as any as string );
     this.pointFromLeftSide = this.slowPointFromSide(ShapeSide.LEFT);
     this.pointFromRightSide = this.slowPointFromSide(ShapeSide.RIGHT);
   }
   half = (side: ShapeSide): HalfKite => {
-    return new HalfKite(this.p5,this,side,this.colors,2);
+    return new HalfKite(this.p5,this,side,this.colors,1);
   }
   slowPointFromSide = (side: ShapeSide) => {
     const copyVec = this.vector.copy();
@@ -65,8 +66,8 @@ export class Dart{
   private pointFromRightSide: Vector;
   constructor(p5: p5Types, point: Vector, vector: Vector, colors: {[i: number]: Color}) {
     this.p5 = p5;
-    this.tip = point;
     this.colors = colors;
+    this.tip = point;
     this.tail = Vector.add(point,vector);
     this.vector = vector;
     this.pointFromLeftSide = this.slowPointFromSide(ShapeSide.LEFT);
@@ -87,7 +88,7 @@ export class Dart{
   pointFromMidSide = (side: ShapeSide): Vector => {
     let ret: Vector = new Vector();
     Vector.lerp(this.tip,this.pointFromSide(side),ratio, ret);
-    return ret;
+    return parseLerpVector(this.p5, ret.x as any as string);
   }
   render = () => {
     this.p5.triangle(this.tip.x,this.tip.y,this.tail.x,this.tail.y,this.pointFromSide(ShapeSide.LEFT).x,this.pointFromSide(ShapeSide.LEFT).y)

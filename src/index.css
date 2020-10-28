@@ -11,8 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-canvas {
-  position: relative;
-  z-index: -3 !important;
-}

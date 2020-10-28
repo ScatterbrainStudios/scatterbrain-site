@@ -1,0 +1,7 @@
+stroke color changes
+find fonts that work (aka, not papyrus)
+get the fucking penrose tiles to appear on the actualy fucking site
+implement material ui into the project
+design a simple architecture for adding content be it art, music, videos, or smoke signals, etc. 
+make a carosel (stepper) POC for site
+make a shadow accent POC

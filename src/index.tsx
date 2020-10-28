@@ -1,3 +1,4 @@
+import { Card } from '@material-ui/core';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -6,7 +7,12 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Penrose/>
+    <div style={{position: "absolute"}}>
+      <Penrose/>
+    </div>
+    <Card className={"container"}>
+      Hello World
+    </Card>
   </React.StrictMode>,
   document.getElementById('root')
 );

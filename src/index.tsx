@@ -1,19 +1,12 @@
-import { Card } from '@material-ui/core';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './App';
 import './index.css';
-import { Penrose } from './Penrose/recurse_sketch';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <div style={{position: "absolute"}}>
-      <Penrose/>
-    </div>
-    
-    <Card style={{position: "absolute"}}>
-      Hello World
-    </Card>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

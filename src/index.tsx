@@ -2,7 +2,7 @@ import { Card } from '@material-ui/core';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { Penrose } from './penrose/recurse_sketch';
+import { Penrose } from './Penrose/recurse_sketch';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
@@ -10,7 +10,8 @@ ReactDOM.render(
     <div style={{position: "absolute"}}>
       <Penrose/>
     </div>
-    <Card className={"container"}>
+    
+    <Card style={{position: "absolute"}}>
       Hello World
     </Card>
   </React.StrictMode>,

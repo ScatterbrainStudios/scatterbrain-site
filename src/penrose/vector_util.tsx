@@ -5,9 +5,7 @@ export function vectorBetween(p5: p5Types, a: Vector, b: Vector) {
 }
 
 export function midpoint(p5: p5Types, a: Vector, b: Vector): Vector {
-  let ret: Vector = new Vector();
-  Vector.lerp(a,b,0.5, ret);
-  return parseLerpVector(p5, ret.x as any as string );
+  return lerp(p5, a, b, 0.5);
 }
 
 export function vectorFromMagAndAngle(p5: p5Types, mag: number, angle: number) {
@@ -17,12 +15,8 @@ export function vectorFromMagAndAngle(p5: p5Types, mag: number, angle: number) {
   return p5.createVector(x,y)
 }
 
-export function parseLerpVector(p5: p5Types, strVec: string): Vector{
-  //p5.Vector Object : [960, 540, 0]0
-  let startIdx = strVec.indexOf("[");
-  let endIdx = strVec.indexOf("]");
-  let csNums = strVec.substring(startIdx+1, endIdx);
-  let strNums = csNums.split(",");
-  let trimNums = strNums.map(s => s.trim());
-  return p5.createVector(+trimNums[0], +trimNums[1], +trimNums[2]);
-}
+export function lerp(p5: p5Types, v1: Vector, v2: Vector, amt: number) {
+  let x = ((v2.x - v1.x) * amt || 0) + v1.x;
+  let y = ((v2.y - v1.y) * amt || 0) + v1.y;
+  return p5.createVector(x,y);
+};

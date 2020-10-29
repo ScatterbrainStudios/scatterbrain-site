@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {Penrose} from "./penrose/recurse_sketch"
+import {Penrose} from "./Penrose/recurse_sketch"
 import React from 'react';
 
 function App() {

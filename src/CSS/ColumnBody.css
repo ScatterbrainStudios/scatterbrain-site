@@ -1,20 +1,30 @@
 
 .mainColumn {
-    height: 100vh;
-    width: 200vh;
-    background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,255), rgba(0,0,0,255), rgba(0,0,0,255), rgba(0,0,0,0), rgba(0,0,0,0));
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
+	height: 100vh;
+	width: 100vh;
+	margin-left: 50vh;
+	margin-right: 50vh;
+	background: linear-gradient( to right, rgba(0,0,0,0), rgba(0, 0, 0, 85), rgba(0, 0, 0, 170), rgba(0,0,0,255), rgba(0, 0, 0, 170), rgba(0,0,0,85), rgba(0,0,0,0) );
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: absolute;
+}
+
+.childrenColumn{
+	width: 50%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	margin-left: 25%;
 }
 
 .fade-in {
-    animation: fadeIn ease 10s;
-    padding-bottom: 10;
+	animation: fadeIn ease 10s;
+	padding-bottom: 10px;
 }
 
 @keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
+	0% {opacity:0;}
+	100% {opacity:1;}
 }

@@ -5,6 +5,7 @@ interface Props{
     title: string;
     width?: number | string;
     height?: number | string;
+    id: number | string;
 }
 
 export class YouTubePlayer extends React.PureComponent<Props>{
@@ -17,9 +18,9 @@ export class YouTubePlayer extends React.PureComponent<Props>{
         this.done = false;
         (window as any).onYouTubeIframeAPIReady = () => {
             this.player = new (window as any).YT.Player('player', {
-                height: '100%',
-                width: '100%',
-                videoId: 'YourVideoId',
+                height: this.props.height,
+                width: this.props.width,
+                videoId: `YoutubeHightlight${this.props.id}`,
                 playerVars: {'autoplay': 1, 'rel': 0, 'controls': 2},
                 events: {
                     'onReady': this.onPlayerReady,
@@ -27,6 +28,8 @@ export class YouTubePlayer extends React.PureComponent<Props>{
                 }
             });
         };
+
+        
     }
 
     onPlayerReady = (event: any) => {
@@ -49,8 +52,8 @@ export class YouTubePlayer extends React.PureComponent<Props>{
             <iframe 
                 title={this.props.title}
                 id="player" 
-                width={this.props.width || 640}
-                height={this.props.height || 390}
+                width={this.props.width}
+                height={this.props.height}
                 src={`http://www.youtube.com/embed/${this.props.videoId}?enablejsapi=1&origin=http://ScatterbrainStudios.github.io/scatterbrain-site`}
                 frameBorder={0}
             />

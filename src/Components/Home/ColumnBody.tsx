@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "../Images/logo512.png";
-import '../CSS/ColumnBody.css';
+import logo from "../../Images/logo512.png";
+import './CSS/ColumnBody.css';
 
 interface Props{
 	id?: string;

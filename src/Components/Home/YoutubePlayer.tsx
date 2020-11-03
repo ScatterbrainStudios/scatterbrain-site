@@ -37,7 +37,7 @@ export class YouTubePlayer extends React.PureComponent<Props>{
     }
 
     onPlayerStateChange = (event: any) => {
-        if (event.data == (window as any).YT.PlayerState.PLAYING && !this.done) {
+        if (event.data === (window as any).YT.PlayerState.PLAYING && !this.done) {
             setTimeout(this.stopVideo, 6000);
             this.done = true;
         }

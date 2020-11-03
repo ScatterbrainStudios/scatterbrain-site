@@ -11,7 +11,7 @@ export class ImageHighlight extends React.PureComponent<Props>{
 
     render(){
 
-        let image = require(`../../Images/${this.props.imageName}`);
+        let image = require(`${this.props.imageName}`);
 
         return(
             <img

@@ -99,19 +99,17 @@ export class Home extends React.PureComponent<any, State> {
 	}
 	
 	render(){
-		if(this.postElements.length === 0 || this.state.width === 0){
-			const posts = Posting.map(data => {
-				let type = stringToPostType(data.source);
-				return {
-					type,
-					title: data.title,
-					link_abstraction: data.link_abstraction,
-					pure_link: type === PostType.purelink ? data.pure_link : undefined,
-					description: data.description
-				}
-			});
-			this.postElements = this.createSubcomponents(posts);
-		}
+		const posts = Posting.map(data => {
+			let type = stringToPostType(data.source);
+			return {
+				type,
+				title: data.title,
+				link_abstraction: data.link_abstraction,
+				pure_link: type === PostType.purelink ? data.pure_link : undefined,
+				description: data.description
+			}
+		});
+		this.postElements = this.createSubcomponents(posts);
 		return (
 			<div style={{textAlign: "center"}}>
 				<div style={{position: "absolute"}}>

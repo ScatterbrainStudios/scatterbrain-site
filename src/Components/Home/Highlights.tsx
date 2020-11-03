@@ -31,11 +31,12 @@ export class Highlights extends React.PureComponent<Props, State>{
 	}
 
 	render(){
+		let myHeight = (this.props.width * (9/16)) + 30;
 		return(
-			<>
+			<div style={{width: this.props.width, minHeight: myHeight, alignItems: "end", display: "flex", flexDirection: "column"}}>
 				{this.props.posts[this.state.step]}
 				<MobileStepper
-					style={{width: "97%", backgroundColor: '#333'}}
+					style={{width: "97%", backgroundColor: '#333', height: 30}}
 					steps={this.props.posts.length}
 					variant="dots"
 					position="static"
@@ -53,7 +54,7 @@ export class Highlights extends React.PureComponent<Props, State>{
 						</Button>
 					}
 				/>
-			</>
+			</div>
 		);
 	}
 

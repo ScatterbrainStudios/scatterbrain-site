@@ -5,5 +5,20 @@
         "link_abstraction": "a3gcm3gqCLo",
         "pure_link": "",
         "description": "This is a super cool test video!\nIt's all about league of legends which nobody actually likes besides Miguel.\nThis needs to be removed soon but for now it's included for testing."
+    },
+    {
+        "source": "spotify",
+        "title": "Driving Drunk",
+        "link_abstraction": "track/7qZyLOHrN85waG8L6IUAno",
+        "pure_link": "",
+        "description": "Sorry Chris, I had to try this out"
+    },
+    {
+        "source": "image",
+        "title": "Scatterbrain logo",
+        "link_abstraction": "scatterbrain logo.PNG",
+        "pure_link": "",
+        "description": "This is our image... well... for now"
     }
+    
 ]

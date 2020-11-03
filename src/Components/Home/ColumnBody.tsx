@@ -12,7 +12,7 @@ export class ColumnBody extends React.PureComponent<Props>{
 		return(
 			<div className={"mainColumn"}>
 				<div style={{marginTop: "5vh", width: "75%"}} className={"fade-in"}>
-					<img alt={"scatterbrain logo"} src={logo} width={200}/>
+					<img alt={"scatterbrain logo"} src={logo} width={200} style={{paddingBottom: 10}}/>
 					<div className={"childrenColumn"} id={this.props.id}>
 						{this.props.children}
 					</div>

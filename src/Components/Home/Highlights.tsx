@@ -3,7 +3,6 @@ import React from "react";
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
-
 interface Props{
 	posts: JSX.Element[];
 	width: number;
@@ -13,12 +12,12 @@ interface State{
 	step: number;
 }
 
-export class Highlights extends React.PureComponent<Props, State>{
+export class Highlights extends React.Component<Props, State>{
 
 	state: State = {
 		step: 0
 	}
-
+	
 	stepForward = () => {
 		let step = (this.state.step + 1) % this.props.posts.length;
 		this.setState({step});
@@ -31,9 +30,10 @@ export class Highlights extends React.PureComponent<Props, State>{
 	}
 
 	render(){
-		let myHeight = (this.props.width * (9/16)) + 30;
+		let width = this.props.width;
+		let myHeight = (width * (9/16)) + 30;
 		return(
-			<div style={{width: this.props.width, minHeight: myHeight, alignItems: "end", display: "flex", flexDirection: "column"}}>
+			<div style={{width: "100%", minHeight: myHeight, alignItems: "end", display: "flex", flexDirection: "column"}}>
 				{this.props.posts[this.state.step]}
 				<MobileStepper
 					style={{width: "97%", backgroundColor: '#333', height: 30}}

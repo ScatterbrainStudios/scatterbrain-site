@@ -1,9 +1,10 @@
-import {Kite, Shape, HalfShape, LEFT, RIGHT} from "./penrose_class";
+import {Kite, Shape, HalfShape, LEFT, RIGHT} from "./Shapes";
 import {vectorFromMagAndAngle} from "./vector_util"
 
 import React from "react";
 import p5Types, { Vector, Color } from "p5";
-import Sketch from "react-p5";
+
+if (typeof window !== undefined) (window as any).p5 = p5Types;
 
 export class Penrose extends React.Component{
 	private FRAME_RATE = 120;
@@ -19,12 +20,34 @@ export class Penrose extends React.Component{
 	private strokeSaturation = 0;
 	private strokeLightness = .5;
 
+	canvasParentRef: any;
+	sketch: p5Types | null = null;
+
+	constructor(props: any){
+		super(props);
+		this.canvasParentRef = React.createRef();
+	}
+
+	componentWillUnmount() {
+		(this as any).sketch.remove();
+	}
+
+	shouldComponentUpdate() {
+		return false;
+	}
+
+	componentDidMount(){
+		this.sketch = new p5Types((p) => {
+			p.setup = () => this.setup(p, this.canvasParentRef.current);
+			p.windowResized = () => this.windowResized(p);
+			p.draw = () => this.draw(p);
+		});
+	}
+
 	render(){
 		return (
-			<Sketch 
-			setup={this.setup}
-			draw={this.draw}
-			windowResized={this.windowResized}
+			<div
+				ref={this.canvasParentRef}
 			/>
 		);
 	}
@@ -34,6 +57,7 @@ export class Penrose extends React.Component{
 	}
 
 	setup = (p5: p5Types, canvasRef: Element) => {
+
 		var canvasHeight = Math.max(window.innerHeight, document.getElementById("root")?.clientHeight || 0);
 		p5.createCanvas(p5.displayWidth, canvasHeight);
 
@@ -42,6 +66,7 @@ export class Penrose extends React.Component{
 		p5.frameRate(this.FRAME_RATE)
 
 		this.initializedData(p5);
+
 	}
 
 	windowResized = (p5: p5Types) => {

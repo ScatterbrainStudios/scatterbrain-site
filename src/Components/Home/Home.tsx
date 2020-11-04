@@ -1,4 +1,4 @@
-import {Penrose} from "../../Penrose/recurse_sketch"
+import {Penrose} from "../../Penrose/Penrose"
 import React from 'react';
 import { ColumnBody } from './ColumnBody';
 import { Highlights } from "./Highlights";
@@ -8,19 +8,20 @@ import { Typography } from "@material-ui/core";
 import { SpotifyPlayer } from "./SpotifyPlayer";
 import { YouTubePlayer } from "./YoutubePlayer";
 import { ImageHighlight } from "./ImageHighlight";
+import "./CSS/Home.css";
 
 interface State{
 	width: number;
 }
 
-export class Home extends React.PureComponent<any, State> {
+export const MAIN_COLUMN_ID = 'childrenColumn';
 
-	private mainColumnId: string;
+export class Home extends React.Component<any, State> {
+
 	private postElements: JSX.Element[];
 
 	constructor(props: any){
 		super(props);
-		this.mainColumnId = 'childrenColumn';
 		this.state = {
 			width: this.getWidth()
 		}
@@ -32,7 +33,7 @@ export class Home extends React.PureComponent<any, State> {
 	}
 
 	getWidth = () => {
-		return document.getElementById(this.mainColumnId)?.clientWidth || 0;
+		return document.getElementById(MAIN_COLUMN_ID)?.clientWidth || 0;
 	}
 
 	renderYoutubePlayer = (post: Post, id: number) => {
@@ -112,13 +113,11 @@ export class Home extends React.PureComponent<any, State> {
 		this.postElements = this.createSubcomponents(posts);
 		return (
 			<div style={{textAlign: "center"}}>
-				<div style={{position: "absolute"}}>
-					<Penrose/>
-				</div>
-				<ColumnBody id={this.mainColumnId}>
+				<Penrose/>
+				<ColumnBody id={MAIN_COLUMN_ID}>
 					<Highlights 
 						posts={this.postElements}
-						width={this.state.width}
+						width={this.getWidth()}
 					/>
 				</ColumnBody>
 			</div>

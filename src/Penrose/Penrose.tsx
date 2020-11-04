@@ -64,7 +64,7 @@ export class Penrose extends React.Component{
 		this.config = this.decideColors(p5);
 
 		p5.frameRate(this.FRAME_RATE)
-
+		
 		this.initializedData(p5);
 
 	}
@@ -81,9 +81,6 @@ export class Penrose extends React.Component{
 
 	initializedData = (p5: p5Types) => {
 		p5.background('black');
-		this.strokeHue = 180;
-		this.strokeSaturation = 0;
-		this.strokeLightness = .5;
 		p5.stroke(p5.color(this.hslToRgb(this.strokeHue, this.strokeSaturation, this.strokeLightness)));
 		const center = p5.createVector(p5.width/2, p5.height/2);
 		const halves = this.halfShapes(this.defineFirstSun(p5,center,p5.width));
@@ -92,6 +89,7 @@ export class Penrose extends React.Component{
 	}
 
 	draw = (p5: p5Types) => {
+		p5.background('black');
 		p5.strokeWeight(0.5);
 		this.curTime = (p5.frameCount - this.startFrame) / this.FRAME_RATE;
 		const shapes = this.shapesAtDepth(this.depthToShapes,this.DEPTH)

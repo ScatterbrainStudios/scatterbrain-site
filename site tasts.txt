@@ -5,3 +5,6 @@ implement material ui into the project
 design a simple architecture for adding content be it art, music, videos, or smoke signals, etc. 
 make a carosel (stepper) POC for site
 make a shadow accent POC
+
+spotify "this track is not available in your country"
+store widtgets locally such that they don't need to be rerendered every time

@@ -58,8 +58,8 @@ export class Penrose extends React.Component{
 
 	setup = (p5: p5Types, canvasRef: Element) => {
 
-		var canvasHeight = Math.max(window.innerHeight, document.getElementById("root")?.clientHeight || 0);
-		p5.createCanvas(p5.displayWidth, canvasHeight);
+		var renderer = p5.createCanvas(p5.displayWidth, p5.displayHeight);
+		renderer.parent(canvasRef);
 
 		this.config = this.decideColors(p5);
 
@@ -70,13 +70,11 @@ export class Penrose extends React.Component{
 	}
 
 	windowResized = (p5: p5Types) => {
-		var canvasHeight = Math.max(window.innerHeight, document.getElementById("root")?.clientHeight || 0);
-
 		this.depthToShapes = {};
 
 		this.initializedData(p5);
 
-		p5.resizeCanvas(p5.displayWidth, canvasHeight);
+		p5.resizeCanvas(p5.displayWidth, p5.displayHeight);
 	}
 
 	initializedData = (p5: p5Types) => {
@@ -101,7 +99,7 @@ export class Penrose extends React.Component{
 				shape.render();
 			}
 
-			if(i === length - 1 && (y < this.curTime-this.TIME_OFFSET - 1)){
+			if(i === length - 1 && (y < this.curTime-this.TIME_OFFSET - 0.5)){
 				if(this.strokeSaturation < 1){
 					this.strokeSaturation += 0.01;
 				}else{

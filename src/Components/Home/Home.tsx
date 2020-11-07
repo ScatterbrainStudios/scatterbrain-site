@@ -112,15 +112,17 @@ export class Home extends React.Component<any, State> {
 		});
 		this.postElements = this.createSubcomponents(posts);
 		return (
-			<div style={{textAlign: "center"}}>
+			<>
 				<Penrose/>
-				<ColumnBody id={MAIN_COLUMN_ID}>
-					<Highlights 
-						posts={this.postElements}
-						width={this.getWidth()}
-					/>
-				</ColumnBody>
-			</div>
+				<div style={{textAlign: "center", display: "flex", justifyContent: "center"}}>
+					<ColumnBody id={MAIN_COLUMN_ID}>
+						<Highlights 
+							posts={this.postElements}
+							width={this.getWidth()}
+						/>
+					</ColumnBody>
+				</div>
+			</>
 		);
 	}
 }

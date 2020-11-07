@@ -12,7 +12,7 @@
 .childrenColumn{
 	width: 50%;
 	min-width: 500px;
-	height: 5000px;
+	min-height: 100vh;
 	align-items: center;
 	display: flex;
 	flex-direction: column;

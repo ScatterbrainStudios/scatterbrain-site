@@ -9,6 +9,7 @@ import { SpotifyPlayer } from "./SpotifyPlayer";
 import { YouTubePlayer } from "./YoutubePlayer";
 import { ImageHighlight } from "./ImageHighlight";
 import "./CSS/Home.css";
+import memoizeOne from "memoize-one";
 
 interface State{
 	width: number;
@@ -88,7 +89,7 @@ export class Home extends React.Component<any, State> {
 		return(<Typography>ERROR: VIDEO NOT FOUND</Typography>);
 	}
 
-	createSubcomponents = (posts: Post[]): JSX.Element[] => {
+	createSubcomponents = memoizeOne((posts: Post[]): JSX.Element[] => {
 		return posts.map((post, i) => {
 			switch(post.type){
 				case PostType.youtube: return this.renderYoutubePlayer(post, i);
@@ -97,7 +98,7 @@ export class Home extends React.Component<any, State> {
 			}
 			return <Typography>Under Construction</Typography>
 		})
-	}
+	})
 	
 	render(){
 		const posts = Posting.map(data => {

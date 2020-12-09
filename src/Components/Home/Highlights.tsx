@@ -1,9 +1,10 @@
-import { Button, MobileStepper, Typography } from "@material-ui/core";
+import { Button, createStyles, fade, MobileStepper, Theme, Typography, withStyles } from "@material-ui/core";
 import React from "react";
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
 interface Props{
+	classes: {[S in keyof ReturnType<typeof componentStyles>]: string};
 	posts: JSX.Element[];
 	width: number;
 }
@@ -12,7 +13,7 @@ interface State{
 	step: number;
 }
 
-export class Highlights extends React.Component<Props, State>{
+class _Highlights extends React.Component<Props, State>{
 
 	state: State = {
 		step: 0
@@ -29,7 +30,16 @@ export class Highlights extends React.Component<Props, State>{
 		this.setState({step});
 	}
 
+	disableBackButton = () => {
+		return this.props.posts.length === 0 || this.state.step === 0;
+	}
+
+	disableForwardButton = () => {
+		return this.props.posts.length === 0 || this.state.step === this.props.posts.length - 1
+	}
+
 	render(){
+		const {classes} = this.props;
 		let width = this.props.width;
 		let myHeight = (width * (9/16)) + 30;
 		return(
@@ -42,15 +52,27 @@ export class Highlights extends React.Component<Props, State>{
 					position="static"
 					activeStep={this.state.step}
 					nextButton={
-						<Button size="small" onClick={this.stepForward} disabled={this.props.posts.length === 0}>
-							<Typography style={{color: 'white'}}>Next</Typography>
-							<KeyboardArrowRight style={{color: 'white'}}/>
+						<Button 
+							size="small" 
+							onClick={this.stepForward} 
+							disabled={this.disableForwardButton()}
+							className={classes.enabledButton}
+							classes={{disabled: classes.disabledButton}}
+						>
+							<Typography className={this.disableForwardButton() ? classes.disabledButton : classes.enabledText}>Next</Typography>
+							<KeyboardArrowRight className={this.disableForwardButton() ? classes.disabledButton : classes.enabledText}/>
 						</Button>
 					}
 					backButton={
-						<Button size="small" onClick={this.stepBackward} disabled={this.props.posts.length === 0}>
-							<KeyboardArrowLeft style={{color: 'white'}}/>
-							<Typography style={{color: 'white'}}>Back</Typography>
+						<Button 
+							size="small" 
+							onClick={this.stepBackward} 
+							disabled={this.disableBackButton()}
+							className={classes.enabledButton}
+							classes={{disabled: classes.disabledButton}}
+						>
+							<KeyboardArrowLeft className={this.disableBackButton() ? classes.disabledButton : classes.enabledText}/>
+							<Typography className={this.disableBackButton() ? classes.disabledButton : classes.enabledText}>Back</Typography>
 						</Button>
 					}
 				/>
@@ -59,3 +81,20 @@ export class Highlights extends React.Component<Props, State>{
 	}
 
 }
+
+const componentStyles = (theme: Theme) => createStyles({
+	enabledButton: {
+		"&:hover": {
+			backgroundColor: fade("#FFFFFF", 0.1)
+		},
+		color: "white"
+	},
+	enabledText: {
+		colo: 'white'
+	},
+	disabledButton: {
+		color: "gray"
+	}
+});
+
+export const Highlights = withStyles(componentStyles, {withTheme: true})(_Highlights);

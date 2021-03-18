@@ -90,7 +90,7 @@ const componentStyles = (theme: Theme) => createStyles({
 		color: "white"
 	},
 	enabledText: {
-		colo: 'white'
+		color: 'white'
 	},
 	disabledButton: {
 		color: "gray"

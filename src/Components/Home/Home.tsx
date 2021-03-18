@@ -2,14 +2,12 @@ import {Penrose} from "../../Penrose/Penrose"
 import React from 'react';
 import { ColumnBody } from './ColumnBody';
 import { Highlights } from "./Highlights";
-import Posting from '../../Postings.json';
 import { Post, PostType, stringToPostType } from "../../Models/Post";
 import { Typography } from "@material-ui/core";
 import { SpotifyPlayer } from "./SpotifyPlayer";
 import { YouTubePlayer } from "./YoutubePlayer";
 import { ImageHighlight } from "./ImageHighlight";
 import "./CSS/Home.css";
-import memoizeOne from "memoize-one";
 
 interface State{
 	width: number;

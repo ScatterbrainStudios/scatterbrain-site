@@ -89,7 +89,7 @@ export class Home extends React.Component<any, State> {
 		return(<Typography>ERROR: VIDEO NOT FOUND</Typography>);
 	}
 
-	createSubcomponents = memoizeOne((posts: Post[]): JSX.Element[] => {
+	createSubcomponents = (posts: Post[]): JSX.Element[] => {
 		return posts.map((post, i) => {
 			switch(post.type){
 				case PostType.youtube: return this.renderYoutubePlayer(post, i);
@@ -98,11 +98,26 @@ export class Home extends React.Component<any, State> {
 			}
 			return <Typography>Under Construction</Typography>
 		})
-	})
+	}
 	
+	sourceList: Post[] = [{
+        type: PostType.youtube,
+        title: "Champ Select | It’s About the Magic",
+        link_abstraction: "a3gcm3gqCLo",
+        pure_link: "",
+        description: "This is a super cool test video!\nIt's all about league of legends which nobody actually likes besides Miguel.\nThis needs to be removed soon but for now it's included for testing."
+    },
+    {
+        type: PostType.spotify,
+        title: "Driving Drunk",
+        link_abstraction: "track/7qZyLOHrN85waG8L6IUAno",
+        pure_link: "",
+        description: "Sorry Chris, I had to try this out"
+    }]
+
 	render(){
-		const posts = Posting.map(data => {
-			let type = stringToPostType(data.source);
+		const posts = this.sourceList.map(data => {
+			let type = stringToPostType(data.type);
 			return {
 				type,
 				title: data.title,

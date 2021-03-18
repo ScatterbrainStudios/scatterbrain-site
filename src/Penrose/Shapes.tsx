@@ -1,4 +1,4 @@
-// http://archive.bridgesmathart.org/2017/bridges2017-213.pdf
+// https://archive.bridgesmathart.org/2017/bridges2017-213.pdf
 import p5Types, { Vector, Color } from "p5";
 import {vectorBetween, lerp} from "./vector_util"
 

@@ -54,7 +54,7 @@ export class YouTubePlayer extends React.PureComponent<Props>{
                 id={`player${this.props.id}`}
                 width={this.props.width}
                 height={this.props.height}
-                src={`https://www.youtube.com/embed/${this.props.videoId}?enablejsapi=1&origin=http://ScatterbrainStudios.github.io/scatterbrain-site`}
+                src={`https://www.youtube.com/embed/${this.props.videoId}?enablejsapi=1&origin=https://ScatterbrainStudios.github.io/scatterbrain-site`}
                 frameBorder={0}
             />
         );
